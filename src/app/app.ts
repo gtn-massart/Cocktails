@@ -4,14 +4,11 @@ import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Cocktails } from './components/cocktails/cocktails';
 
-
-
-
 @Component({
   selector: 'app-root',
-  imports: [Header, Footer, Cocktails ,RouterOutlet],
+  imports: [Header, Footer, Cocktails, RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('Cocktails');
