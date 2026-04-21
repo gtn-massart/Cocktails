@@ -11,6 +11,6 @@ export class CocktailDetails {
     imageUrl:
       'https://images.unsplash.com/photo-1622322331040-088df8424c89?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Mojito',
-    description: `Le mojito est un cocktail classique d'origine cubaine, très rafraîchissant et populaire dans le monde entier.`,
+    description: `Le mojito est un cocktail classique cubain, Idéal pour les moment de détente. Composé de rhum blanc, de feuilles de menthe fraîche, de jus de citron vert, de sucre, d'eau gazeuse et de glace pilée, il offre un équilibre parfait entre fraîcheur, acidité et douceur, avec des arômes rafraîchissants et tropicaux`,
   };
 }
