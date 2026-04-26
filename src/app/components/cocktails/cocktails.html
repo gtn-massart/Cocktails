@@ -1,5 +1,6 @@
 <app-cocktails-list
   (selectCocktail)="selectCocktail($event)"
+  [selectedCocktailName]="selectedCocktailName()"
   [cocktails]="cocktails()"
   class="w-half card"
 ></app-cocktails-list>

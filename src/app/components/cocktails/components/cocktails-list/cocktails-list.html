@@ -1,7 +1,13 @@
 <h2 class="mb-20">Liste des cocktails</h2>
 <ul class="mb-20">
   @for (cocktail of cocktails(); track cocktail.name) {
-    <li (click)="selectCocktail.emit(cocktail.name)" class="px-12 py-6 radius">
+    @let active = cocktail.name === selectedCocktailName();
+    <li
+      [class.active-item]="active"
+      [class.text-primary]="active"
+      (click)="selectCocktail.emit(cocktail.name)"
+      class="px-12 py-6 radius"
+    >
       <h3>{{ cocktail.name }}</h3>
     </li>
   }

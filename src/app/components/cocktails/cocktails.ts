@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CocktailsList } from './components/cocktails-list/cocktails-list';
 import { CocktailDetails } from './components/cocktail-details/cocktail-details';
 import { Cocktail } from '../../shared/interfaces/cocktail.interface';
@@ -13,6 +13,7 @@ import { cocktails } from '../../shared/data/cocktails.data';
 export class Cocktails {
   cocktails = signal<Cocktail[]>(cocktails);
   selectedCocktail = signal<Cocktail>(this.cocktails()[0]);
+  selectedCocktailName = computed(() => this.selectedCocktail().name)
 
   selectCocktail(cocktailName: string) {
     const newCocktail = this.cocktails().find(({ name }) => name === cocktailName);

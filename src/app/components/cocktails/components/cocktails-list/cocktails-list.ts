@@ -9,5 +9,6 @@ import { Cocktail } from '../../../../shared/interfaces/cocktail.interface';
 })
 export class CocktailsList {
   cocktails = input<Cocktail[]>();
+  selectedCocktailName = input.required();
   selectCocktail = output<string>();
 }
