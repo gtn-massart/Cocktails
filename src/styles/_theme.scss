@@ -7,7 +7,11 @@ body {
 .card {
   padding: 20px;
   border-radius: var(--radius);
-  border: var(--border)
+  border: var(--border);
+}
+
+.radius {
+  border-radius: var(--radius);
 }
 
 .active-item {
@@ -25,7 +29,7 @@ body {
   border-radius: var(--radius);
   cursor: pointer;
   padding: 8px 12px;
-  transition: background-color .4s;
+  transition: background-color 0.4s;
 }
 
 .btn-primary {
@@ -34,12 +38,4 @@ body {
   &:hover {
     background-color: var(--dark);
   }
-}
-
-.btn-danger {
-
-}
-
-.btn-success {
-
 }
