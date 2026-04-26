@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { CocktailsList } from './components/cocktails-list/cocktails-list';
 import { CocktailDetails } from './components/cocktail-details/cocktail-details';
+import { Cocktail } from '../../shared/interfaces/cocktail.interface';
+import { cocktails } from '../../shared/data/cocktails.data';
 
 @Component({
   selector: 'app-cocktails',
@@ -8,4 +10,9 @@ import { CocktailDetails } from './components/cocktail-details/cocktail-details'
   templateUrl: './cocktails.html',
   styleUrl: './cocktails.scss',
 })
-export class Cocktails {}
+export class Cocktails {
+  cocktails = signal<Cocktail[]>(cocktails);
+  selectCocktail(cocktailName: string){
+        
+  } 
+}

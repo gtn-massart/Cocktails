@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Cocktail } from '../../../../shared/interfaces/cocktail.interface';
 
 @Component({
   selector: 'app-cocktails-list',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './cocktails-list.html',
   styleUrl: './cocktails-list.scss',
 })
-export class CocktailsList {}
+export class CocktailsList {
+  cocktails = input<Cocktail[]>();
+    selectCocktail = output<string>();
+}
