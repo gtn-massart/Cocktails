@@ -1,6 +1,14 @@
-<img class="mb-20" [src]="cocktail.imageUrl" alt="Mojito" />
-<h3 class="mb-20">{{ cocktail.name }}</h3>
-<p class="mb-20">{{ cocktail.description }}</p>
+@let c = cocktail();
+<div>
+  <img class="mb-20" [src]="c.imageUrl" alt="Mojito" />
+</div>
+<h3 class="mb-20">{{ c.name }}</h3>
+<p class="mb-20">{{ c.description }}</p>
+<ul class="mb-20">
+  @for (ingredient of c.ingredients; track $index) {
+    <li class="my-2">{{ ingredient }}</li>
+  }
+</ul>
 <div>
   <button class="btn btn-primary">Ajouter cocktail</button>
 </div>
