@@ -39,3 +39,9 @@ body {
     background-color: var(--dark);
   }
 }
+
+input {
+  border: var(--border) ;
+  border-radius: 6px;
+  padding: 12px;
+}
