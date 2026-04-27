@@ -1,0 +1,18 @@
+button {
+  padding: 16px;
+  font-size: 32px;
+  border: none;
+  background-color: inherit;
+  color: white;
+  cursor: pointer;
+}
+ul {
+  position: absolute;
+  right: 12px;
+  top: 64px;
+  padding: 12px;
+  border: var(--border);
+  border-radius: var(--radius);
+  color: var(--text-color);
+  background-color: white;
+}
