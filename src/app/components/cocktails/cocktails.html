@@ -5,5 +5,11 @@
 />
 @let sc = selectedCocktail();
 @if (sc) {
-  <app-cocktail-details [cocktail]="sc" class="w-half xs-w-full card" />
+  <app-cocktail-details
+    (likecocktail)="likeCocktail($event)"
+    (unlikecocktail)="unlikeCocktail($event)"
+    [cocktail]="sc"
+    [isLiked]="selectedCocktailLiked()"
+    class="w-half xs-w-full card"
+  />
 }

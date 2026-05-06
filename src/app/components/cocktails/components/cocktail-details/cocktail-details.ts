@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Cocktail } from '../../../../shared/interfaces/cocktail.interface';
 
 @Component({
@@ -8,5 +8,9 @@ import { Cocktail } from '../../../../shared/interfaces/cocktail.interface';
   styleUrl: './cocktail-details.scss',
 })
 export class CocktailDetails {
-  cocktail = input.required<Cocktail>()
+  cocktail = input.required<Cocktail>();
+  isLiked = input.required<boolean>();
+
+  likecocktail = output<string>();
+  unlikecocktail = output<string>();
 }
