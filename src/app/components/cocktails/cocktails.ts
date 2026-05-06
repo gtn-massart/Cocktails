@@ -1,8 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CocktailsList } from './components/cocktails-list/cocktails-list';
 import { CocktailDetails } from './components/cocktail-details/cocktail-details';
-import { Cocktail } from '../../shared/interfaces/cocktail.interface';
-import { cocktails } from '../../shared/data/cocktails.data';
 import { CocktailsService } from '../../shared/services/cocktails.service';
 
 @Component({
@@ -14,13 +12,8 @@ import { CocktailsService } from '../../shared/services/cocktails.service';
 export class Cocktails {
   cocktailsService = inject(CocktailsService);
   cocktails = computed(() => this.cocktailsService.cocktailsResource.value() || []);
-  selectedCocktail = signal<Cocktail>(this.cocktails()[0]);
-  selectedCocktailName = computed(() => this.selectedCocktail()?.name);
-
-  selectCocktail(cocktailName: string) {
-    const newCocktail = this.cocktails().find(({ name }) => name === cocktailName);
-    if (newCocktail) {
-      this.selectedCocktail.set(newCocktail);
-    }
-  }
+  selectedCocktailId = signal<string | null>(null);
+  selectedCocktail = computed(() =>
+    this.cocktails().find(({ _id }) => _id === this.selectedCocktailId()),
+  );
 }

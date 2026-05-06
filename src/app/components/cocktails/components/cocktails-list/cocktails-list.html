@@ -2,11 +2,11 @@
 <input [(ngModel)]="filter" type="text" class="mb-20 w-full" placeholder="Chercher un cocktail" />
 <ul class="mb-20">
   @for (cocktail of filteredCocktails(); track cocktail.name) {
-    @let active = cocktail.name === selectedCocktailName();
+    @let active = cocktail._id === selectedCocktailId();
     <li
       [class.active-item]="active"
       [class.text-primary]="active"
-      (click)="selectCocktail.emit(cocktail.name)"
+      (click)="selectedCocktailId.set(cocktail._id)"
       class="px-12 py-6 radius"
     >
       <h3>{{ cocktail.name }}</h3>

@@ -1,9 +1,9 @@
 <app-cocktails-list
-  (selectCocktail)="selectCocktail($event)"
-  [selectedCocktailName]="selectedCocktailName()"
+  [(selectedCocktailId)]="selectedCocktailId"
   [cocktails]="cocktails()"
   class="w-half xs-w-full card"
 />
-@if (selectedCocktail()) {
-  <app-cocktail-details [cocktail]="selectedCocktail()" class="w-half xs-w-full card" />
+@let sc = selectedCocktail();
+@if (sc) {
+  <app-cocktail-details [cocktail]="sc" class="w-half xs-w-full card" />
 }

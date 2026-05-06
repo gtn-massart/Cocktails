@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, model, signal } from '@angular/core';
 import { Cocktail } from '../../../../shared/interfaces/cocktail.interface';
 import { FormsModule } from '@angular/forms';
 
@@ -16,6 +16,5 @@ export class CocktailsList {
       name.toLowerCase().includes(this.filter().toLowerCase()),
     ),
   );
-  selectedCocktailName = input.required();
-  selectCocktail = output<string>();
+  selectedCocktailId = model<string | null>(null);
 }
