@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from './components/headers/components/header/header';
 import { Footer } from './components/footer/footer';
 import { Cocktails } from './components/cocktails/cocktails';
+// import { seedData } from './shared/data/seed';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,8 @@ import { Cocktails } from './components/cocktails/cocktails';
 })
 export class App {
   protected readonly title = signal('Cocktails');
+
+  constructor() {
+    // seedData();
+  }
 }

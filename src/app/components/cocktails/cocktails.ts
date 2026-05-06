@@ -11,9 +11,9 @@ import { cocktails } from '../../shared/data/cocktails.data';
   styleUrl: './cocktails.scss',
 })
 export class Cocktails {
-  cocktails = signal<Cocktail[]>(cocktails);
+  cocktails = signal<Cocktail[]>([]);
   selectedCocktail = signal<Cocktail>(this.cocktails()[0]);
-  selectedCocktailName = computed(() => this.selectedCocktail().name)
+  selectedCocktailName = computed(() => this.selectedCocktail()?.name)
 
   selectCocktail(cocktailName: string) {
     const newCocktail = this.cocktails().find(({ name }) => name === cocktailName);

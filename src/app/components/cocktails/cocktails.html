@@ -3,5 +3,7 @@
   [selectedCocktailName]="selectedCocktailName()"
   [cocktails]="cocktails()"
   class="w-half xs-w-full card"
-></app-cocktails-list>
-<app-cocktail-details [cocktail]="selectedCocktail()" class="w-half xs-w-full card"></app-cocktail-details>
+/>
+@if(selectedCocktail()) {
+  <app-cocktail-details [cocktail]="selectedCocktail()" class="w-half xs-w-full card" />
+}
