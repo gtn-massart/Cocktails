@@ -1,8 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CocktailsList } from './components/cocktails-list/cocktails-list';
 import { CocktailDetails } from './components/cocktail-details/cocktail-details';
 import { Cocktail } from '../../shared/interfaces/cocktail.interface';
 import { cocktails } from '../../shared/data/cocktails.data';
+import { CocktailsService } from '../../shared/services/cocktails.service';
 
 @Component({
   selector: 'app-cocktails',
@@ -11,9 +12,10 @@ import { cocktails } from '../../shared/data/cocktails.data';
   styleUrl: './cocktails.scss',
 })
 export class Cocktails {
-  cocktails = signal<Cocktail[]>([]);
+  cocktailsService = inject(CocktailsService);
+  cocktails = computed(() => this.cocktailsService.cocktailsResource.value() || []);
   selectedCocktail = signal<Cocktail>(this.cocktails()[0]);
-  selectedCocktailName = computed(() => this.selectedCocktail()?.name)
+  selectedCocktailName = computed(() => this.selectedCocktail()?.name);
 
   selectCocktail(cocktailName: string) {
     const newCocktail = this.cocktails().find(({ name }) => name === cocktailName);
