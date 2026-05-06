@@ -1,5 +1,8 @@
 <app-cocktails-list
   [(selectedCocktailId)]="selectedCocktailId"
+  [likedCoctailIds]="likedCoctailIds()"
+  (likecocktail)="likeCocktail($event)"
+  (unlikecocktail)="unlikeCocktail($event)"
   [cocktails]="cocktails()"
   class="w-half xs-w-full card"
 />
