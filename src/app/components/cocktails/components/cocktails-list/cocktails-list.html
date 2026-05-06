@@ -1,6 +1,13 @@
 <h2 class="mb-20">Liste des cocktails</h2>
-<input [(ngModel)]="filter" #search type="text" class="mb-20 w-full" placeholder="Chercher un cocktail" />
+<input
+  [(ngModel)]="filter"
+  #search
+  type="text"
+  class="mb-20 w-full"
+  placeholder="Chercher un cocktail"
+/>
 <ul class="mb-20">
+  @let likedIds = likedCoctailIds();
   @for (cocktail of filteredCocktails(); track cocktail.name) {
     @let active = cocktail._id === selectedCocktailId();
     <li
@@ -9,7 +16,12 @@
       (click)="selectedCocktailId.set(cocktail._id)"
       class="px-12 py-6 radius"
     >
-      <h3>{{ cocktail.name }}</h3>
+      <h3 class="flex">
+        <span class="flex-auto">{{ cocktail.name }}</span>
+        @if (likedIds.includes(cocktail._id)) {
+          <span class="heart">&#10084;</span>
+        }
+      </h3>
     </li>
   }
 </ul>
