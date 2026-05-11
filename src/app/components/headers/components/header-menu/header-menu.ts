@@ -11,6 +11,10 @@ export class HeaderMenu {
   show = signal(false);
   navigations = [
     {
+      path: '/admin',
+      name: 'Admin',
+    },
+    {
       path: '/cocktails',
       name: 'Cocktails',
     },
