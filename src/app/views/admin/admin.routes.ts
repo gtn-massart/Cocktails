@@ -15,6 +15,11 @@ export const routes: Routes = [
       {
         path: 'cocktails',
         component: AdminCocktails
+      },
+      {
+        path: '',
+        redirectTo: 'cocktails',
+        pathMatch: 'full'
       }
     ]
   },
