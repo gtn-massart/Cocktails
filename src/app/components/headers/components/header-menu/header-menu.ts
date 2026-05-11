@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header-menu',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header-menu.html',
   styleUrl: './header-menu.scss',
 })
@@ -10,14 +11,14 @@ export class HeaderMenu {
   show = signal(false);
   navigations = [
     {
-      path: '#',
-      name: 'Liste des cocktails'
+      path: '/cocktails',
+      name: 'Cocktails',
     },
     {
-      path: '#',
-      name: 'Panier'
-    }
-  ]
+      path: '/cart',
+      name: 'Panier',
+    },
+  ];
 
   toggleMenu() {
     this.show.update((s) => !s);

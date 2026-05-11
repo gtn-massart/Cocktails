@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { Cocktails } from './views/cocktails/cocktails';
+import { NotFound } from './views/not-found/not-found';
+
 
 export const routes: Routes = [
   {
@@ -11,8 +13,8 @@ export const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'cocktails',
   },
-  // {
-  //   path: '**',
-  //   component: NotFound,
-  // }
+  {
+    path: '**',
+    component: NotFound,
+  }
 ];
