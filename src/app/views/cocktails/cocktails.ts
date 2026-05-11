@@ -11,8 +11,8 @@ import { CartService } from '../../shared/services/cart.service';
   styleUrl: './cocktails.scss',
 })
 export class Cocktails {
-  cocktailsService = inject(CocktailsService);
-  cartService = inject(CartService);
+  private cocktailsService = inject(CocktailsService);
+  private cartService = inject(CartService);
 
   cocktails = computed(() => this.cocktailsService.cocktailsResource.value() || []);
 
@@ -30,8 +30,11 @@ export class Cocktails {
   likeCocktail(cocktailId: string) {
     this.cartService.likeCocktail(cocktailId);
   }
-
   unlikeCocktail(cocktailId: string) {
     this.cartService.unlikeCocktail(cocktailId);
+  }
+
+  addIngredients(ingredients: string[]) {
+    this.cartService.addIngredients(ingredients);
   }
 }

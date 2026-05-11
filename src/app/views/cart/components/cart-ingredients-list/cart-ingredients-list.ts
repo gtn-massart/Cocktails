@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 
 @Component({
   selector: 'app-cart-ingredients-list',
@@ -6,4 +6,13 @@ import { Component } from '@angular/core';
   templateUrl: './cart-ingredients-list.html',
   styleUrl: './cart-ingredients-list.scss',
 })
-export class CartIngredientsList {}
+export class CartIngredientsList {
+  ingredients = input<string[]>();
+
+  constructor() {
+    effect(() => {
+      console.log(this.ingredients());
+      
+    })
+  }
+}

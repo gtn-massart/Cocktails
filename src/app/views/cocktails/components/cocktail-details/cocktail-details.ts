@@ -13,4 +13,6 @@ export class CocktailDetails {
 
   likecocktail = output<string>();
   unlikecocktail = output<string>();
+  addIngredients = output<string[]>();
+
 }
