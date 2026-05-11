@@ -18,6 +18,11 @@ body {
   background-color: var(--light);
   border-radius: var(--radius);
 }
+.active-link {
+  background-color: var(--dark);
+  border-radius: var(--radius);
+  color: white;
+}
 
 .text-primary {
   color: var(--primary);
