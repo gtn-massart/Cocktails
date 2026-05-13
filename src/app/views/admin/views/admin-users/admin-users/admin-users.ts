@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './admin-users.html',
   styleUrl: './admin-users.scss',
+  host: {class: 'card flex flex-col p-12' }
 })
 export class AdminUsers {}
