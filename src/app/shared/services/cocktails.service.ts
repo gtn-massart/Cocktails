@@ -19,7 +19,7 @@ export class CocktailsService {
   }
 
   async createCocktail(cocktailForm: CocktailForm) {
-    const response = await fetch(BASE_URL, {
+    const response = await fetch(`${BASE_URL}?delay=2`, {
       method: 'POST',
       body: JSON.stringify(cocktailForm),
       headers: {

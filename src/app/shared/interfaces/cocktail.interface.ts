@@ -6,7 +6,6 @@ export interface Cocktail {
   ingredients: string[];
 }
 
-
 export interface CocktailForm {
   _id?: string;
   imageUrl: string;

@@ -3,7 +3,7 @@
   <div class="flex flex-col gap-12 mb-10">
     <label for="name">Nom du cocktail</label>
     <input formControlName="name" id="name" type="text" />
-    @if(nameControl.errors?.['required'] && nameControl.touched){
+    @if (nameControl.errors?.['required'] && nameControl.touched) {
       <p class="error">Le nom du cocktail est obligatoire</p>
     }
   </div>
@@ -18,18 +18,22 @@
   <div class="mb-20">
     <div class="flex align-items-center gap-12 mb-10">
       <label class="flex-auto">Ingrédients du cocktail</label>
-      <button (click)="addIngredient()" class="btn btn-primary">Ajouter</button>
+      <button type="button" (click)="addIngredient()" class="btn btn-primary">Ajouter</button>
     </div>
     <ul formArrayName="ingredients">
       @for (ingredient of ingredientsControl.controls; track $index) {
         <li class="flex align-items-center gap-12 mb-10">
           <input class="flex-auto" [formControlName]="$index" type="text" />
-          <button (click)="deleteIngredient($index)" class="btn btn-danger">Supprimer</button>
+          <button type="button" (click)="deleteIngredient($index)" class="btn btn-danger">
+            Supprimer
+          </button>
         </li>
       }
     </ul>
   </div>
   <div>
-    <button [disabled]="cocktailForm.invalid || this.isLoading()" class="btn btn-primary">Sauvegarder</button>
+    <button [disabled]="cocktailForm.invalid || this.isLoading()" class="btn btn-primary">
+      Sauvegarder
+    </button>
   </div>
 </form>
