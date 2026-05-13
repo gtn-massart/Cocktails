@@ -10,17 +10,17 @@ export const routes: Routes = [
     children: [
       {
         path: 'users',
-        component: AdminUsers
+        component: AdminUsers,
       },
       {
         path: 'cocktails',
-        component: AdminCocktails
+        loadChildren: async () => (await import('./views/admin-cocktails/admin-cocktails.routes')).routes,
       },
       {
         path: '',
         redirectTo: 'cocktails',
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+    ],
   },
 ];
