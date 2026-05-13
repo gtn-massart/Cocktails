@@ -1,5 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { CocktailsService } from '../../../../../../shared/services/cocktails.service';
+import { CocktailForm } from '../../../../../../shared/interfaces/cocktail.interface';
 
 @Component({
   selector: 'app-admin-cocktails-form',
@@ -10,6 +18,9 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } 
 })
 export class AdminCocktailsForm {
   private fb = inject(FormBuilder);
+  private cocktailsService = inject(CocktailsService);
+
+  isLoading = signal(false);
 
   cocktailForm = this.fb.group({
     name: ['', Validators.required],
@@ -34,5 +45,14 @@ export class AdminCocktailsForm {
     this.ingredientsControl.removeAt(index);
   }
 
-  submit() {}
+  async submit() {
+    this.isLoading.set(true);
+    try {
+      await this.cocktailsService.createCocktail(this.cocktailForm.getRawValue() as CocktailForm);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.isLoading.set(false);
+    }
+  }
 }
