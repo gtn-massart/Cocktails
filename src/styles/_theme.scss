@@ -57,8 +57,18 @@ body {
   color: white;
 }
 
+button[disabled] {
+  opacity: 0.5;
+}
+
 input {
-  border: var(--border) ;
+  border: var(--border);
   border-radius: 6px;
   padding: 12px;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 500;
 }
