@@ -1,5 +1,5 @@
 import { Injectable, resource } from '@angular/core';
-import { Cocktail } from '../interfaces/cocktail.interface';
+import { Cocktail, CocktailForm } from '../interfaces/cocktail.interface';
 
 const BASE_URL = 'https://restapi.fr/api/cocktails';
 
@@ -16,5 +16,21 @@ export class CocktailsService {
       method: 'DELETE',
     });
     this.cocktailsResource.reload();
+  }
+
+  async createCocktail(cocktailForm: CocktailForm) {
+    const response = await fetch(BASE_URL, {
+      method: 'POST',
+      body: JSON.stringify(cocktailForm),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    const body = await response.json();
+    if (response.ok) {
+      this.cocktailsResource.reload();
+    } else {
+      throw new Error(body);
+    }
   }
 }
