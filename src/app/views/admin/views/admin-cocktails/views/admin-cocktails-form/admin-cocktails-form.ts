@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -7,7 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { CocktailsService } from '../../../../../../shared/services/cocktails.service';
-import { CocktailForm } from '../../../../../../shared/interfaces/cocktail.interface';
+import { Cocktail, CocktailForm } from '../../../../../../shared/interfaces/cocktail.interface';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-cocktails-form',
@@ -19,7 +21,11 @@ import { CocktailForm } from '../../../../../../shared/interfaces/cocktail.inter
 export class AdminCocktailsForm {
   private fb = inject(FormBuilder);
   private cocktailsService = inject(CocktailsService);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
 
+  cocktails = computed(() => this.cocktailsService.cocktailsResource.value());
+  cocktailId = toSignal(this.activatedRoute.params)()!['cocktailId'];
   isLoading = signal(false);
 
   cocktailForm = this.fb.group({
@@ -27,6 +33,26 @@ export class AdminCocktailsForm {
     imageUrl: [''],
     description: [''],
     ingredients: this.fb.array([]),
+  });
+
+  initCocktailFormEffect = effect(() => {
+    if (this.cocktailId) {
+      const cocktails = this.cocktails();
+      if (cocktails) {
+        const { name, imageUrl, description, ingredients } = cocktails.find(
+          ({ _id }) => this.cocktailId === _id,
+        )!;
+        this.cocktailForm.patchValue({
+          name,
+          imageUrl,
+          description,
+        });
+        ingredients.forEach((i) => this.ingredientsControl.push(this.fb.control(i)));
+        this.initCocktailFormEffect.destroy();
+      }
+    } else {
+      this.initCocktailFormEffect.destroy();
+    }
   });
 
   get ingredientsControl() {
@@ -48,7 +74,15 @@ export class AdminCocktailsForm {
   async submit() {
     this.isLoading.set(true);
     try {
-      await this.cocktailsService.createCocktail(this.cocktailForm.getRawValue() as CocktailForm);
+      if (this.cocktailId) {
+        await this.cocktailsService.editCocktail({
+          ...this.cocktailForm.getRawValue(),
+          _id: this.cocktailId,
+        } as Cocktail);
+      } else {
+        await this.cocktailsService.createCocktail(this.cocktailForm.getRawValue() as CocktailForm);
+      }
+      this.router.navigateByUrl('/admin/cocktails/list');
     } catch (error) {
       console.log(error);
     } finally {
